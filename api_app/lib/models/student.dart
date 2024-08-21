@@ -15,5 +15,13 @@ class Student {
     required this.enrolled
   });
 
-  
+  factory Student.fromSqlfliteDB(Map<String, dynamic> map) => Student(
+    id: map["id"], 
+    firstName: map["firstName"] ?? '', 
+    lastName: map["lastName"] ?? '', 
+    course: map["course"] ?? '', 
+    year: map["year"] ?? '', 
+    enrolled: map["bool"] == 0 ? false : true
+  );
+
 }
