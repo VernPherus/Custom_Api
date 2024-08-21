@@ -1,3 +1,6 @@
+//TODO: CREATE A DIFFERENT PAGE FOR MAKING NEW RECORDS
+//TODO: CREATE A PAGE FOR VIEWING, UPDATING AND DELETING RECORD
+
 import 'package:api_app/database/students_db.dart';
 import 'package:api_app/models/student.dart';
 import 'package:api_app/widgets/student_widget.dart';
