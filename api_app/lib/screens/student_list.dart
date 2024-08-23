@@ -1,11 +1,8 @@
-//TODO: CREATE A DIFFERENT PAGE FOR MAKING NEW RECORDS
-//TODO: CREATE A PAGE FOR VIEWING, UPDATING AND DELETING RECORD
 
 import 'package:api_app/database/students_db.dart';
 import 'package:api_app/models/student.dart';
 import 'package:api_app/screens/student_form.dart';
 import 'package:api_app/widgets/student_details.dart';
-import 'package:api_app/widgets/student_widget.dart';
 import 'package:flutter/material.dart';
 
 class StudentList extends StatefulWidget {
@@ -76,7 +73,7 @@ class _StudentListState extends State<StudentList> {
                                 icon: const Icon(Icons.delete,
                                     color: Colors.red)),
                             onTap: () {
-                              showDialog(context: context, builder: (context)  => StudentDetails());
+                              showDialog(context: context, builder: (context)  => const StudentDetails());
                             },
                           );
                         },

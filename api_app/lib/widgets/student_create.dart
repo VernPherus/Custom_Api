@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:api_app/models/student.dart';
 
-class StudentWidget extends StatefulWidget {
+class CreateStudent extends StatefulWidget {
   final Student? student;
   final ValueChanged<String> onSubmit;
 
-  const StudentWidget({Key? key, this.student, required this.onSubmit})
-      : super(key: key);
+  const CreateStudent({super.key, this.student, required this.onSubmit});
 
   @override
-  State<StudentWidget> createState() => _StudentWidgetState();
+  State<CreateStudent> createState() => _CreateStudentState();
 }
 
-class _StudentWidgetState extends State<StudentWidget> {
+class _CreateStudentState extends State<CreateStudent> {
   final fname_ctrlr = TextEditingController();
   final lname_ctrlr = TextEditingController();
   final formKey = GlobalKey<FormState>();
