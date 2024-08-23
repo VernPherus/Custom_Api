@@ -1,7 +1,10 @@
+// TODO create a different page for creating students
+// TODO create another page for updating students
 
 import 'package:api_app/database/students_db.dart';
 import 'package:api_app/models/student.dart';
 import 'package:api_app/screens/student_form.dart';
+import 'package:api_app/widgets/student_create.dart';
 import 'package:api_app/widgets/student_details.dart';
 import 'package:flutter/material.dart';
 
@@ -73,7 +76,9 @@ class _StudentListState extends State<StudentList> {
                                 icon: const Icon(Icons.delete,
                                     color: Colors.red)),
                             onTap: () {
-                              showDialog(context: context, builder: (context)  => const StudentDetails());
+                              showDialog(
+                                  context: context,
+                                  builder: (context) => const StudentDetails());
                             },
                           );
                         },
@@ -83,8 +88,17 @@ class _StudentListState extends State<StudentList> {
         floatingActionButton: FloatingActionButton(
             child: const Icon(Icons.add),
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const StudentForm()));
+              showDialog(
+                  context: context,
+                  builder: (_) => CreateStudent(onSubmit:
+                          (firstName, lastName, course, year, enrolled) async {
+                        await studentDB.create(
+                            firstName: firstName.toString(),
+                            lastName: lastName.toString(),
+                            course: course.toString(),
+                            year: year.toString(),
+                            enrolled: enrolled.toString());
+                      }));
             }),
       );
 }

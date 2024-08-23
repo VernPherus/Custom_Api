@@ -1,12 +1,13 @@
+// TODO Use the get student by id and display the data
+
 import 'package:api_app/database/students_db.dart';
 import 'package:api_app/models/student.dart';
 import 'package:flutter/material.dart';
 
 class StudentDetails extends StatefulWidget {
   final Student? student;
-  final studentId;
 
-  const StudentDetails({Key? key, required this.studentId, this.student})
+  const StudentDetails({Key? key, this.student})
       : super(key: key);
 
   @override
