@@ -13,15 +13,16 @@ class StudentWidget extends StatefulWidget {
 }
 
 class _StudentWidgetState extends State<StudentWidget> {
-
-  final controller = TextEditingController();
+  final fname_ctrlr = TextEditingController();
+  final lname_ctrlr = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
 
-    controller.text = widget.student?.firstName ?? '';
+    fname_ctrlr.text = widget.student?.firstName ?? '';
+    lname_ctrlr.text = widget.student?.lastName ?? '';
   }
 
   @override
