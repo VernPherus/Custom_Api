@@ -1,11 +1,8 @@
-// TODO create another page for updating students
-
 // ignore_for_file: use_build_context_synchronously
-
+// TODO Fix onSubmit crash
 import 'package:api_app/database/students_db.dart';
 import 'package:api_app/models/student.dart';
 import 'package:api_app/widgets/student_create.dart';
-import 'package:api_app/widgets/student_details.dart';
 import 'package:flutter/material.dart';
 
 class StudentList extends StatefulWidget {
@@ -29,6 +26,7 @@ class _StudentListState extends State<StudentList> {
   void fetchStudents() {
     setState(() {
       futureStudents = StudentsDB().fetchAll();
+      print("Fetct Students called");
     });
   }
 
@@ -78,6 +76,7 @@ class _StudentListState extends State<StudentList> {
                             onTap: () {
                               showDialog(
                                   context: context,
+                                  barrierDismissible: false,
                                   builder: (_) => CreateStudent(
                                       student: student,
                                       onSubmit: (studentUp) async {
@@ -88,8 +87,8 @@ class _StudentListState extends State<StudentList> {
                                             course: studentUp['course'],
                                             year: studentUp['year'],
                                             enrolled: studentUp['enrolled']);
-                                        fetchStudents();
                                         if (!mounted) return;
+                                        fetchStudents();
                                         Navigator.of(context).pop();
                                       }));
                             },
@@ -109,7 +108,7 @@ class _StudentListState extends State<StudentList> {
                             lastName: student['lastName'],
                             course: student['course'],
                             year: student['year'],
-                            enrolled: student['endrolled']);
+                            enrolled: student['enrolled']);
                         if (!mounted) return;
                         fetchStudents();
                         Navigator.of(context).pop();

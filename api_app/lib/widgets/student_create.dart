@@ -83,7 +83,7 @@ class _CreateStudentState extends State<CreateStudent> {
               children: [
                 const Text('Enrolled: '),
                 Switch(
-                    value: false,
+                    value: isEnrolled,
                     onChanged: (bool value) {
                       setState(() {
                         isEnrolled = value;
