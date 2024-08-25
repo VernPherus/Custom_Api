@@ -24,7 +24,7 @@ class StudentsDB {
       required String lastName,
       required String course,
       required String year,
-      required String enrolled}) async {
+      required int enrolled}) async {
     final database = await DbService().database;
     return await database.rawInsert(
       '''INSERT INTO $tableName(firstName, lastName, course, year, enrolled) VALUES (?,?,?,?,?)''',
@@ -48,22 +48,21 @@ class StudentsDB {
 
   //Update
   Future<int> update(
-      {
-      required int id,
+      {required int id,
       required String firstName,
       required String lastName,
       required String course,
       required String year,
-      required String enrolled}) async {
+      required int enrolled}) async {
     final database = await DbService().database;
     return await database.update(
       tableName,
       {
-        'firstName' : firstName,
+        'firstName': firstName,
         'lastName': lastName,
-        'course' : course,
-        'year' : year,
-        'enrolled' : enrolled
+        'course': course,
+        'year': year,
+        'enrolled': enrolled
       },
       where: 'id = ?',
       conflictAlgorithm: ConflictAlgorithm.rollback,

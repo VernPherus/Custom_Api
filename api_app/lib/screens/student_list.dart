@@ -1,9 +1,9 @@
-// TODO create a different page for creating students
 // TODO create another page for updating students
+
+// ignore_for_file: use_build_context_synchronously
 
 import 'package:api_app/database/students_db.dart';
 import 'package:api_app/models/student.dart';
-import 'package:api_app/screens/student_form.dart';
 import 'package:api_app/widgets/student_create.dart';
 import 'package:api_app/widgets/student_details.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +78,20 @@ class _StudentListState extends State<StudentList> {
                             onTap: () {
                               showDialog(
                                   context: context,
-                                  builder: (context) => const StudentDetails());
+                                  builder: (_) => CreateStudent(
+                                      student: student,
+                                      onSubmit: (studentUp) async {
+                                        await studentDB.update(
+                                            id: student.id,
+                                            firstName: studentUp['firstName'],
+                                            lastName: studentUp['lastName'],
+                                            course: studentUp['course'],
+                                            year: studentUp['year'],
+                                            enrolled: studentUp['enrolled']);
+                                        fetchStudents();
+                                        if (!mounted) return;
+                                        Navigator.of(context).pop();
+                                      }));
                             },
                           );
                         },
@@ -90,14 +103,16 @@ class _StudentListState extends State<StudentList> {
             onPressed: () {
               showDialog(
                   context: context,
-                  builder: (_) => CreateStudent(onSubmit:
-                          (firstName, lastName, course, year, enrolled) async {
+                  builder: (_) => CreateStudent(onSubmit: (student) async {
                         await studentDB.create(
-                            firstName: firstName.toString(),
-                            lastName: lastName.toString(),
-                            course: course.toString(),
-                            year: year.toString(),
-                            enrolled: enrolled.toString());
+                            firstName: student['firstName'],
+                            lastName: student['lastName'],
+                            course: student['course'],
+                            year: student['year'],
+                            enrolled: student['endrolled']);
+                        if (!mounted) return;
+                        fetchStudents();
+                        Navigator.of(context).pop();
                       }));
             }),
       );
