@@ -87,8 +87,8 @@ class _StudentListState extends State<StudentList> {
                                             course: studentUp['course'],
                                             year: studentUp['year'],
                                             enrolled: studentUp['enrolled']);
-                                        if (!mounted) return;
                                         fetchStudents();
+                                        if (!mounted) return;
                                         Navigator.of(context).pop();
                                       }));
                             },
@@ -102,6 +102,7 @@ class _StudentListState extends State<StudentList> {
             onPressed: () {
               showDialog(
                   context: context,
+                  barrierDismissible: false,
                   builder: (_) => CreateStudent(onSubmit: (student) async {
                         await studentDB.create(
                             firstName: student['firstName'],
