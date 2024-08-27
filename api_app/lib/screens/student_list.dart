@@ -26,7 +26,6 @@ class _StudentListState extends State<StudentList> {
   void fetchStudents() {
     setState(() {
       futureStudents = StudentsDB().fetchAll();
-      print("Fetch Students called");
     });
   }
 
