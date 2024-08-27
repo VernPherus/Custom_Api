@@ -79,17 +79,20 @@ class _CreateStudentState extends State<CreateStudent> {
                   DropdownMenuEntry(value: 'Fourth Year', label: 'Fourth Year'),
                   DropdownMenuEntry(value: 'Fifth Year', label: 'Fifth Year'),
                 ]),
-            Row(
-              children: [
-                const Text('Enrolled: '),
-                Switch(
-                    value: isEnrolled,
-                    onChanged: (bool value) {
-                      setState(() {
-                        isEnrolled = value;
-                      });
-                    })
-              ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  const Text('Enrolled: '),
+                  Switch(
+                      value: isEnrolled,
+                      onChanged: (bool value) {
+                        setState(() {
+                          isEnrolled = value;
+                        });
+                      })
+                ],
+              ),
             ),
           ])),
       actions: [
@@ -107,7 +110,6 @@ class _CreateStudentState extends State<CreateStudent> {
                   'enrolled': isEnrolled ? 0 : 1,
                 });
               }
-              Navigator.pop(context);
             },
             child: const Text('Submit'))
       ],

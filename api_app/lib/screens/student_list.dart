@@ -52,13 +52,12 @@ class _StudentListState extends State<StudentList> {
                         ),
                       )
                     : ListView.separated(
-                        separatorBuilder: (context, index) => const SizedBox(
-                          height: 12,
-                        ),
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(height: 12),
                         itemCount: students.length,
                         itemBuilder: (context, index) {
                           final student = students[index];
-                          final subtitle = student.id.toString();
+                          final subtitle = student.course.toString();
                           return ListTile(
                             title: Text(
                               student.firstName,
