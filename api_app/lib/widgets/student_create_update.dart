@@ -3,17 +3,17 @@
 import 'package:flutter/material.dart';
 import 'package:api_app/models/student.dart';
 
-class CreateStudent extends StatefulWidget {
+class Create_Update_Student extends StatefulWidget {
   final Student? student;
   final ValueChanged<Map<String, dynamic>> onSubmit;
 
-  const CreateStudent({super.key, this.student, required this.onSubmit});
+  const Create_Update_Student({super.key, this.student, required this.onSubmit});
 
   @override
-  State<CreateStudent> createState() => _CreateStudentState();
+  State<Create_Update_Student> createState() => _Create_Update_StudentState();
 }
 
-class _CreateStudentState extends State<CreateStudent> {
+class _Create_Update_StudentState extends State<Create_Update_Student> {
   final fname_ctrlr = TextEditingController();
   final lname_ctrlr = TextEditingController();
   final course = TextEditingController();

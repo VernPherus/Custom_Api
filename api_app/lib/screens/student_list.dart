@@ -3,7 +3,7 @@
 import 'package:api_app/database/students_db.dart';
 import 'package:api_app/models/student.dart';
 import 'package:api_app/screens/student_view.dart';
-import 'package:api_app/widgets/student_create.dart';
+import 'package:api_app/widgets/student_create_update.dart';
 import 'package:flutter/material.dart';
 
 class StudentList extends StatefulWidget {
@@ -73,8 +73,14 @@ class _StudentListState extends State<StudentList> {
                                 icon: const Icon(Icons.delete,
                                     color: Colors.red)),
                             onTap: () {
-                              
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => StudentView(studentID: student.id,)));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => StudentView(
+                                            studentID: student.id,
+                                          ))).then((_) {setState(() {
+                                            fetchStudents();
+                                          });});
                             },
                           );
                         },
@@ -87,7 +93,7 @@ class _StudentListState extends State<StudentList> {
               showDialog(
                   context: context,
                   barrierDismissible: false,
-                  builder: (_) => CreateStudent(onSubmit: (student) async {
+                  builder: (_) => Create_Update_Student(onSubmit: (student) async {
                         await studentDB.create(
                             firstName: student['firstName'],
                             lastName: student['lastName'],

@@ -1,6 +1,6 @@
 import 'package:api_app/database/students_db.dart';
 import 'package:api_app/models/student.dart';
-import 'package:api_app/widgets/student_create.dart';
+import 'package:api_app/widgets/student_create_update.dart';
 import 'package:flutter/material.dart';
 
 class StudentView extends StatefulWidget {
@@ -49,7 +49,8 @@ class _StudentViewState extends State<StudentView> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.center,                        children: [
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
                           Text(student.firstName),
                           Text(student.lastName)
                         ],
@@ -65,7 +66,7 @@ class _StudentViewState extends State<StudentView> {
                               showDialog(
                                   context: context,
                                   barrierDismissible: false,
-                                  builder: (_) => CreateStudent(
+                                  builder: (_) => Create_Update_Student(
                                       student: student,
                                       onSubmit: (studentUp) async {
                                         await studentDB.update(
