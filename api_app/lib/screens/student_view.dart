@@ -24,7 +24,9 @@ class _StudentViewState extends State<StudentView> {
   }
 
   void fetchStudentData(int studentID) {
-    futureStudent = studentDB.fetchById(studentID);
+    setState(() {
+      futureStudent = studentDB.fetchById(studentID);
+    });
   }
 
   @override

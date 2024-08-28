@@ -7,7 +7,8 @@ class Create_Update_Student extends StatefulWidget {
   final Student? student;
   final ValueChanged<Map<String, dynamic>> onSubmit;
 
-  const Create_Update_Student({super.key, this.student, required this.onSubmit});
+  const Create_Update_Student(
+      {super.key, this.student, required this.onSubmit});
 
   @override
   State<Create_Update_Student> createState() => _Create_Update_StudentState();
@@ -41,30 +42,39 @@ class _Create_Update_StudentState extends State<Create_Update_Student> {
       content: Form(
           key: formKey,
           child: Column(children: [
-            TextFormField(
-              autofocus: true,
-              controller: fname_ctrlr,
-              decoration: const InputDecoration(hintText: 'First name'),
-              validator: (value) => value != null && value.isEmpty
-                  ? 'First name is required'
-                  : null,
-            ),
-            TextFormField(
-              autofocus: true,
-              controller: lname_ctrlr,
-              decoration: const InputDecoration(hintText: 'Last name'),
-              validator: (value) => value != null && value.isEmpty
-                  ? 'Last name is required'
-                  : null,
-            ),
-            TextFormField(
-              autofocus: true,
-              controller: course,
-              decoration: const InputDecoration(hintText: 'Course'),
-              validator: (value) =>
-                  value != null && value.isEmpty ? 'Course is required' : null,
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  TextFormField(
+                    autofocus: true,
+                    controller: fname_ctrlr,
+                    decoration: const InputDecoration(hintText: 'First name'),
+                    validator: (value) => value != null && value.isEmpty
+                        ? 'First name is required'
+                        : null,
+                  ),
+                  TextFormField(
+                    autofocus: true,
+                    controller: lname_ctrlr,
+                    decoration: const InputDecoration(hintText: 'Last name'),
+                    validator: (value) => value != null && value.isEmpty
+                        ? 'Last name is required'
+                        : null,
+                  ),
+                  TextFormField(
+                    autofocus: true,
+                    controller: course,
+                    decoration: const InputDecoration(hintText: 'Course'),
+                    validator: (value) => value != null && value.isEmpty
+                        ? 'Course is required'
+                        : null,
+                  ),
+                ],
+              ),
             ),
             DropdownMenu(
+                initialSelection: year,
                 enableFilter: false,
                 onSelected: (value) => value != null
                     ? setState(() {
