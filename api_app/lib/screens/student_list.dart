@@ -2,6 +2,7 @@
 // TODO Fix onSubmit crash
 import 'package:api_app/database/students_db.dart';
 import 'package:api_app/models/student.dart';
+import 'package:api_app/screens/student_view.dart';
 import 'package:api_app/widgets/student_create.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,7 @@ class _StudentListState extends State<StudentList> {
 
   void fetchStudents() {
     setState(() {
-      futureStudents = StudentsDB().fetchAll();
+      futureStudents = studentDB.fetchAll();
     });
   }
 
@@ -72,23 +73,8 @@ class _StudentListState extends State<StudentList> {
                                 icon: const Icon(Icons.delete,
                                     color: Colors.red)),
                             onTap: () {
-                              showDialog(
-                                  context: context,
-                                  barrierDismissible: false,
-                                  builder: (_) => CreateStudent(
-                                      student: student,
-                                      onSubmit: (studentUp) async {
-                                        await studentDB.update(
-                                            id: student.id,
-                                            firstName: studentUp['firstName'],
-                                            lastName: studentUp['lastName'],
-                                            course: studentUp['course'],
-                                            year: studentUp['year'],
-                                            enrolled: studentUp['enrolled']);
-                                        fetchStudents();
-                                        if (!mounted) return;
-                                        Navigator.of(context).pop();
-                                      }));
+                              
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => StudentView(studentID: student.id,)));
                             },
                           );
                         },
