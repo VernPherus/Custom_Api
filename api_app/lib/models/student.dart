@@ -1,8 +1,8 @@
 class Student {
-  final int id;
+  final String id;
   final String firstName;
   final String lastName;
-  final String course; 
+  final String course;
   final String year;
   final bool enrolled;
   final int versionKey;
@@ -17,16 +17,12 @@ class Student {
     required this.versionKey,
   });
 
-  factory Student.fromJson(Map<String, dynamic> json){
-    return Student(
+  factory Student.fromJson(Map<String, dynamic> json) => Student(
       id: json["_id"],
       firstName: json["fname"],
       lastName: json["lname"],
       course: json["course"],
       year: json["year"],
       enrolled: json["enrolled"] == 0 ? false : true,
-      versionKey: json["__v"]
-    );
-  }
-
+      versionKey: json["__v"]);
 }
