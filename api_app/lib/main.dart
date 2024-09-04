@@ -1,4 +1,3 @@
-import "package:api_app/screens/student_list.dart";
 import "package:flutter/material.dart";
 
 void main() {
@@ -13,6 +12,6 @@ class Index extends StatelessWidget {
     return const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "Student API",
-        home: StudentList());
+        home: const Placeholder());
   }
 }
