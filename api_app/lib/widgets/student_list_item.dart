@@ -21,7 +21,7 @@ class _StudentListItemsState extends State<StudentListItems> {
       List<dynamic> studentJson = json.decode(response.body)['data'];
       return studentJson.map((json)=> Student.fromJson(json)).toList();
     }else{
-      throw Exception('Failed to get employee Data');
+      throw Exception('Failed to get student Data');
     }
   }
 
@@ -50,7 +50,7 @@ class _StudentListItemsState extends State<StudentListItems> {
         final students = snapshot.data!;
         return buildStudents(students);
       }else{
-        return Center(child: const Text("No User Data"));
+        return Center(child: const Text("No Student Data"));
       }
     });
   }
