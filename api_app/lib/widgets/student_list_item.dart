@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:api_app/models/student.dart';
+import 'package:api_app/models/student_model.dart';
 
 class StudentListItems extends StatefulWidget {
   const StudentListItems({super.key});
@@ -11,21 +11,21 @@ class StudentListItems extends StatefulWidget {
 }
 
 class _StudentListItemsState extends State<StudentListItems> {
-  Future<List<Student>> studentFuture = fetchStudentData();
+  Future<List<StudentModel>> studentFuture = fetchStudentData();
 
-  static Future<List<Student>> fetchStudentData() async {
+  static Future<List<StudentModel>> fetchStudentData() async {
     final response =
         await http.get(Uri.parse('https://api-students.vercel.app/students'));
       
     if(response.statusCode == 200){
       List<dynamic> studentJson = json.decode(response.body)['data'];
-      return studentJson.map((json)=> Student.fromJson(json)).toList();
+      return studentJson.map((json)=> StudentModel.fromJson(json)).toList();
     }else{
       throw Exception('Failed to get employee Data');
     }
   }
 
-  Widget buildStudents(List<Student> students) => ListView.builder(
+  Widget buildStudents(List<StudentModel> students) => ListView.builder(
     itemCount: students.length,
     itemBuilder: (context, index){
       final student = students[index];
