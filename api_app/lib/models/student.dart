@@ -23,6 +23,6 @@ class Student {
       lastName: json["lname"],
       course: json["course"],
       year: json["year"],
-      enrolled: json["enrolled"] == 0 ? false : true,
+      enrolled: json["enrolled"],
       versionKey: json["__v"]);
 }

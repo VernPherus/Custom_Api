@@ -34,7 +34,7 @@ class _StudentListItemsState extends State<StudentListItems> {
         child: ListTile(
           leading: const Icon(Icons.person),
           title: Text(student.firstName),
-          subtitle: Text(student.id),
+          subtitle: Text('${student.course}, ${student.enrolled}'),
           trailing: const Icon(Icons.drag_handle),
         ),
       );
