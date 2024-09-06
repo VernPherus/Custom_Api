@@ -37,21 +37,27 @@ class ApiService {
     }
   }
 
-  Future<void> createStudent(Student student) async {
+  Future<void> createStudent(
+      {required String fname,
+      required String lname,
+      required String course,
+      required String year,
+      required bool enrolled}) async {
     final url = Uri.parse('$baseUrl/student/create');
     try {
       final response = await http.post(url,
           headers: {'Content-type': 'application/json'},
           body: jsonEncode({
-            'fname': student.firstName,
-            'lname': student.lastName,
-            'course': student.course,
-            'year': student.year,
-            'enrolled': student.enrolled
+            'fname': fname,
+            'lname': lname,
+            'course': course,
+            'year': year,
+            'enrolled': enrolled
           }));
 
       if (response.statusCode == 200) {
         print("Succesfully created");
+        print(response.body);
       } else {
         throw Exception('Failed to created');
       }
@@ -60,17 +66,23 @@ class ApiService {
     }
   }
 
-  Future<void> updateStudent(String id, Student student) async {
-    final url = Uri.parse('$baseUrl/student/$id');
+  Future<void> updateStudent(
+      {required String id,
+      required String fname,
+      required String lname,
+      required String course,
+      required String year,
+      required bool enrolled}) async {
+    final url = Uri.parse('$baseUrl/student/update/$id');
     try {
-      final response = await http.post(url,
+      final response = await http.put(url,
           headers: {'Content-type': 'application/json'},
           body: jsonEncode({
-            'fname': student.firstName,
-            'lname': student.lastName,
-            'course': student.course,
-            'year': student.year,
-            'enrolled': student.enrolled
+            'fname': fname,
+            'lname': lname,
+            'course': course,
+            'year': year,
+            'enrolled': enrolled
           }));
 
       if (response.statusCode == 200) {
@@ -83,7 +95,7 @@ class ApiService {
     }
   }
 
-  Future<void> deleteStudent(String id) async{
+  Future<void> deleteStudent(String id) async {
     final url = Uri.parse('$baseUrl/student/delete/$id');
     try {
       final response = await http.delete(url);
