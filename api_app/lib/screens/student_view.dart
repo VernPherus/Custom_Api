@@ -48,12 +48,33 @@ class _StudentViewState extends State<StudentView> {
             return Padding(
               padding: EdgeInsets.all(8.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text('Name: ${student.firstName} ${student.lastName}'),
-                  Text('Course: ${student.course}'),
-                  Text('Year: ${student.year}'),
-                  Text('Is Enrolled: ${student.enrolled}'),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Name: ${student.firstName} ${student.lastName}',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 25),
+                      ),
+                      Text(
+                        'Course: ${student.course}',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 25),
+                      ),
+                      Text(
+                        'Year: ${student.year}',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 25),
+                      ),
+                      Text(
+                        'Is Enrolled: ${student.enrolled}',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 25),
+                      ),
+                    ],
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [

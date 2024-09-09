@@ -3,9 +3,7 @@ import 'package:api_app/screens/student_view.dart';
 import 'package:api_app/widgets/student_form.dart';
 import 'package:api_app/widgets/student_list_item.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert';
 import 'package:api_app/models/student.dart';
-import 'package:http/http.dart';
 
 class StudentList extends StatefulWidget {
   const StudentList({super.key});

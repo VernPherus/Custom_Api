@@ -1,5 +1,4 @@
 import 'package:api_app/api/api_service.dart';
-import 'package:api_app/screens/student_view.dart';
 import 'package:flutter/material.dart';
 
 class StudentListItem extends StatefulWidget {
