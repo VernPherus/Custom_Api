@@ -1,57 +1,61 @@
+import 'package:api_app/api/api_service.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:api_app/models/student_model.dart';
 
-class StudentListItems extends StatefulWidget {
-  const StudentListItems({super.key});
+class StudentListItem extends StatefulWidget {
+  final String StudentID;
+  final String fname;
+  final String lname;
+  final String year;
+  final String course;
+  final Function()? onTap;
+  final Function()? onPress;
+
+  const StudentListItem(
+      {super.key,
+      required this.StudentID,
+      required this.fname,
+      required this.lname,
+      required this.year,
+      required this.course,
+      this.onTap,
+      this.onPress});
 
   @override
-  State<StudentListItems> createState() => _StudentListItemsState();
+  State<StudentListItem> createState() => _StudentListItemState();
 }
 
-class _StudentListItemsState extends State<StudentListItems> {
-  Future<List<StudentModel>> studentFuture = fetchStudentData();
+class _StudentListItemState extends State<StudentListItem> {
+  final api_service = ApiService();
+  String id = '';
+  String fname = '';
+  String lname = '';
+  String course = '';
+  String year = '';
+  Function()? onTap;
+  Function()? onPress;
 
-  static Future<List<StudentModel>> fetchStudentData() async {
-    final response =
-        await http.get(Uri.parse('https://api-students.vercel.app/students'));
-      
-    if(response.statusCode == 200){
-      List<dynamic> studentJson = json.decode(response.body)['data'];
-      return studentJson.map((json)=> StudentModel.fromJson(json)).toList();
-    }else{
-      throw Exception('Failed to get employee Data');
-    }
+  @override
+  void initState() {
+    super.initState();
+
+    id = widget.StudentID;
+    fname = widget.fname;
+    lname = widget.lname;
+    course = widget.course;
+    year = widget.year;
+    onTap = widget.onTap;
+    onPress = widget.onPress;
   }
-
-  Widget buildStudents(List<StudentModel> students) => ListView.builder(
-    itemCount: students.length,
-    itemBuilder: (context, index){
-      final student = students[index];
-
-      return Card(
-        child: ListTile(
-          leading: const Icon(Icons.person),
-          title: Text(student.firstName),
-          subtitle: Text(student.id),
-          trailing: const Icon(Icons.drag_handle),
-        ),
-      );
-    },
-  );
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(future: studentFuture, builder: (context, snapshot){
-      if(snapshot.connectionState == ConnectionState.waiting) {
-        return Center(child: const CircularProgressIndicator());
-      }else if(snapshot.hasData){
-        final students = snapshot.data!;
-        return buildStudents(students);
-      }else{
-        return Center(child: const Text("No User Data"));
-      }
-    });
+    return Padding(
+      padding: EdgeInsets.all(8.0),
+      child: ListTile(
+          title: Text('$fname $lname'),
+          subtitle: Text('$year, $course'),
+          trailing: IconButton(onPressed: onPress, icon: Icon(Icons.delete)),
+          onTap: onTap),
+    );
   }
 }

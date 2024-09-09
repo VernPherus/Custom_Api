@@ -5,6 +5,7 @@ class Student {
   final String course; 
   final String year;
   final bool enrolled;
+  final int versionkey;
 
   Student({
     required this.id,
@@ -12,16 +13,16 @@ class Student {
     required this.lastName,
     required this.course,
     required this.year,
-    required this.enrolled
+    required this.enrolled,
+    required this.versionkey
   });
 
-  factory Student.fromSqlfliteDB(Map<String, dynamic> map) => Student(
-    id: map["id"], 
-    firstName: map["firstName"] ?? '', 
-    lastName: map["lastName"] ?? '', 
-    course: map["course"] ?? '', 
-    year: map["year"] ?? '', 
-    enrolled: map["bool"] == 0 ? false : true
-  );
-
+  factory Student.fromJson(Map<String, dynamic> json) => Student(
+      id: json["_id"],
+      firstName: json["fname"],
+      lastName: json["lname"],
+      course: json["course"],
+      year: json["year"],
+      enrolled: json["enrolled"],
+      versionkey: json["__v"]);
 }
