@@ -31,6 +31,7 @@ class _StudentListState extends State<StudentList> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: const Text(
             'Student List',
