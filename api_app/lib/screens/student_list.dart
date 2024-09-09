@@ -1,24 +1,4 @@
-<<<<<<< HEAD
-import 'package:flutter/material.dart';
-import 'package:api_app/widgets/student_list_item.dart';
-
-class StudentList extends StatelessWidget {
-  const StudentList({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Colors.blue, title: const Text("Data pls work")),
-      body: const Padding(
-        padding: EdgeInsets.all(8.0),
-        child: StudentListItems(),
-      ),
-    );
-  }
-=======
-// ignore_for_file: use_build_context_synchronously
-// TODO Fix onSubmit crash
+// ignore_for_file: use_build_context_synchronousl
 import 'package:api_app/database/students_db.dart';
 import 'package:api_app/models/student.dart';
 import 'package:api_app/screens/student_view.dart';
@@ -125,5 +105,4 @@ class _StudentListState extends State<StudentList> {
                       }));
             }),
       );
->>>>>>> parent of bc7fec6 (restructured model, removed database and unused imports)
 }

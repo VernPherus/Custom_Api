@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-import 'package:flutter/material.dart';
-
-class StudentView extends StatefulWidget {
-  const StudentView({super.key});
-=======
 import 'package:api_app/database/students_db.dart';
 import 'package:api_app/models/student.dart';
 import 'package:api_app/widgets/student_create_update.dart';
@@ -13,20 +7,12 @@ class StudentView extends StatefulWidget {
   final int studentID;
 
   const StudentView({super.key, required this.studentID});
->>>>>>> parent of bc7fec6 (restructured model, removed database and unused imports)
 
   @override
   State<StudentView> createState() => _StudentViewState();
 }
 
 class _StudentViewState extends State<StudentView> {
-<<<<<<< HEAD
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-=======
   Future<Student>? futureStudent;
   final studentDB = StudentsDB();
 
@@ -108,4 +94,3 @@ class _StudentViewState extends State<StudentView> {
             }));
   }
 }
->>>>>>> parent of bc7fec6 (restructured model, removed database and unused imports)
