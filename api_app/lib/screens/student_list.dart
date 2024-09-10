@@ -57,6 +57,7 @@ class _StudentListState extends State<StudentList> {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ))
                   : ListView.separated(
+                    padding: EdgeInsets.only(bottom: 100),
                       separatorBuilder: (context, index) =>
                           const SizedBox(height: 0.0),
                       itemCount: students.length,
@@ -80,8 +81,26 @@ class _StudentListState extends State<StudentList> {
                             });
                           },
                           onPress: () async {
-                            await api_service.deleteStudent(student.id);
-                            getStudents();
+                            showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                      content: const Text(
+                                          'Are you sure you want to delete this student?'),
+                                      actions: [
+                                        TextButton(
+                                            onPressed: () =>
+                                                Navigator.pop(context),
+                                            child: const Text('Cancel')),
+                                        TextButton(
+                                            onPressed: () async {
+                                              await api_service
+                                                  .deleteStudent(student.id);
+                                              getStudents();
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: const Text('Confirm')),
+                                      ],
+                                    ));
                           },
                         );
                       },
