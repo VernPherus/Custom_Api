@@ -58,7 +58,7 @@ class _StudentListState extends State<StudentList> {
                     ))
                   : ListView.separated(
                       separatorBuilder: (context, index) =>
-                          const SizedBox(height: 12),
+                          const SizedBox(height: 0.0),
                       itemCount: students.length,
                       itemBuilder: (context, index) {
                         final student = students[index];

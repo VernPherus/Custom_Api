@@ -50,12 +50,31 @@ class _StudentListItemState extends State<StudentListItem> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: EdgeInsets.only(top: 8.0, left: 24.0, right: 24.0),
       child: ListTile(
-          title: Text('$fname $lname'),
-          subtitle: Text('$year, $course'),
-          trailing: IconButton(onPressed: onPress, icon: Icon(Icons.delete)),
-          onTap: onTap),
+        leading: Icon(Icons.person_2_sharp),
+        title: Text(
+          '$fname $lname',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        subtitle: Text(
+          '$year\n$course',
+          style: TextStyle(fontWeight: FontWeight.w300),
+        ),
+        trailing: IconButton(
+          onPressed: onPress,
+          icon: Icon(Icons.delete),
+          color: Colors.red,
+          iconSize: 35.0,
+        ),
+        onTap: onTap,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            side: BorderSide(
+              color: Colors.black,
+              width: 1,
+            )),
+      ),
     );
   }
 }
