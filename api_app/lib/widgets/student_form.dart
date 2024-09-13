@@ -43,42 +43,61 @@ class _StudentFormState extends State<StudentForm> {
                 key: formKey,
                 child: Column(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          TextFormField(
-                            autofocus: true,
-                            controller: fnameController,
-                            decoration:
-                                const InputDecoration(hintText: 'First Name'),
-                            validator: (value) => value != null && value.isEmpty
-                                ? 'First name is required'
-                                : null,
-                          ),
-                          TextFormField(
-                            autofocus: true,
-                            controller: lnameController,
-                            decoration:
-                                const InputDecoration(hintText: 'Last Name'),
-                            validator: (value) => value != null && value.isEmpty
-                                ? 'Last name is required'
-                                : null,
-                          ),
-                          TextFormField(
+                    Column(
+                      children: [
+                        Row(
+                          children: [
+                            Flexible(
+                              flex: 2,
+                              child: TextFormField(
+                                autofocus: true,
+                                controller: fnameController,
+                                decoration: const InputDecoration(
+                                  hintText: 'First Name',
+                                ),
+                                validator: (value) =>
+                                    value != null && value.isEmpty
+                                        ? 'First name is required'
+                                        : null,
+                              ),
+                            ),
+                            Padding(padding: EdgeInsets.all(2)),
+                            Flexible(
+                              flex: 2,
+                              child: TextFormField(
+                                autofocus: true,
+                                controller: lnameController,
+                                decoration: const InputDecoration(
+                                    hintText: 'Last Name'),
+                                validator: (value) =>
+                                    value != null && value.isEmpty
+                                        ? 'Last name is required'
+                                        : null,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                          child: TextFormField(
                             autofocus: true,
                             controller: courseController,
-                            decoration:
-                                const InputDecoration(hintText: 'Course'),
+                            decoration: const InputDecoration(
+                                hintText: 'Course',
+                                border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20)))),
                             validator: (value) => value != null && value.isEmpty
                                 ? 'Course is required'
                                 : null,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     DropdownMenu(
-                        initialSelection: yearVal,
+                        label: const Text('Year'),
+                        initialSelection:
+                            yearVal.isEmpty ? 'First Year' : yearVal,
                         enableFilter: false,
                         onSelected: (value) => value != null
                             ? setState(() {
@@ -98,7 +117,7 @@ class _StudentFormState extends State<StudentForm> {
                               value: 'Fifth Year', label: 'Fifth Year'),
                         ]),
                     Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.only(left: 8.0, right: 8.0),
                       child: Row(
                         children: [
                           const Text('Enrolled: '),
