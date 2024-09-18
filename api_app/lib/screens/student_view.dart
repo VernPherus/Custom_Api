@@ -1,6 +1,7 @@
 import 'package:api_app/api/api_service.dart';
 import 'package:api_app/models/student.dart';
 import 'package:api_app/widgets/student_form.dart';
+import 'package:api_app/widgets/student_view_widgets/student_data_card.dart';
 import 'package:api_app/widgets/student_view_widgets/title_card.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +36,19 @@ class _StudentViewState extends State<StudentView> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Student Details'),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back_ios_new_outlined,
+              color: Colors.white,
+            )),
+        title: Text(
+          'Student Details',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.orange,
       ),
       body: FutureBuilder(
         future: futureStudent,
@@ -53,33 +66,19 @@ class _StudentViewState extends State<StudentView> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Flexible(
-                    flex: 1,
+                    flex: 2,
                     fit: FlexFit.tight,
                     child: TitleCard(
                       titleText: '${student.firstName} ${student.lastName}',
                     ),
                   ),
                   Flexible(
-                    child: Column(
-                      children: [
-                        Text(
-                          'Course: ${student.course}',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 25),
-                        ),
-                        Text(
-                          'Year: ${student.year}',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 25),
-                        ),
-                        Text(
-                          'Is Enrolled: ${student.enrolled}',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 25),
-                        ),
-                      ],
-                    ),
-                  ),
+                      flex: 3,
+                      fit: FlexFit.tight,
+                      child: StudentDataCard(
+                          course: student.course,
+                          year: student.year,
+                          enrollementStat: student.enrolled)),
                   Flexible(
                       flex: 1,
                       fit: FlexFit.tight,
@@ -108,7 +107,13 @@ class _StudentViewState extends State<StudentView> {
                                             Navigator.of(context).pop();
                                           }));
                                 },
-                                child: const Text("Update")),
+                                style: OutlinedButton.styleFrom(
+                                  backgroundColor: Colors.orange,
+                                ),
+                                child: Text(
+                                  "Update",
+                                  style: TextStyle(color: Colors.white),
+                                )),
                           )
                         ],
                       ))

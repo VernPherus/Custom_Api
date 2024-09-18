@@ -14,7 +14,7 @@ class TitleCard extends StatelessWidget {
           bottomRight: Radius.circular(14.0),
         ),
       ),
-      color: Colors.grey,
+      color: Colors.orange,
       elevation: 0,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -29,12 +29,13 @@ class TitleCard extends StatelessWidget {
                     titleText,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 20.0,
+                      fontSize: 40.0,
+                      color: Colors.white
                     ),
                   ),
                   Divider(
                     thickness: 3,
-                    color: Colors.black,
+                    color: Colors.white,
                     height: 40,
                   )
                 ],
